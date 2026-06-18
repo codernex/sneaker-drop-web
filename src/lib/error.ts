@@ -10,7 +10,7 @@ export const showPrettyError = (error: Error) => {
       message: string;
     }>;
     if (axiosError.response?.data?.errors) {
-      const errors = [];
+      const errors: string[] = [];
       Object.entries(axiosError.response.data.errors).forEach(
         ([key, value]) => {
           errors.push(`${key}: ${value}`);
