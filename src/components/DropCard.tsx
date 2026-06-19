@@ -55,9 +55,10 @@ export function DropCard({ drop }: DropCardProps) {
     },
     onSuccess: () => {
       clearReservation(drop.id);
-      setPurchased(true);
       queryClient.invalidateQueries({ queryKey: ["drops"] });
       toast.success("🎉 Purchase complete! Enjoy your kicks.", { duration: 5000 });
+      setPurchased(true);
+      setTimeout(() => setPurchased(false), 2500);
     },
     onError: (err) => {
       const msg = axios.isAxiosError(err)
@@ -175,7 +176,7 @@ export function DropCard({ drop }: DropCardProps) {
 
       <CardFooter className="flex gap-2 pt-0">
         {purchased ? (
-          <Button disabled className="w-full gap-2 bg-emerald-600 text-white">
+          <Button disabled className="w-full gap-2 bg-emerald-600 hover:bg-emerald-600 text-white">
             <CheckCircle className="h-4 w-4" />
             Purchased!
           </Button>
