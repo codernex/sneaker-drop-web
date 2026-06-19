@@ -148,4 +148,4 @@ All real-time state updates are applied directly to the **TanStack Query cache**
 | `drop:new`            | Invalidates the drops query, triggering a refetch                          |
 | `reservation:created` | _(server emits to drop room only — handled by the reserving client's mutation)_ |
 
-Drop-scoped rooms (`drop:join` / `drop:leave`) are available but not wired at component level in this version — all broadcasts are currently global.
+Drop-scoped rooms (`drop:join` / `drop:leave`) are available at the backend but not wired at component level in this version — all broadcasts are currently global.
