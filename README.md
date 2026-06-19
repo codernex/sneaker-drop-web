@@ -9,7 +9,6 @@ Built with **React 19**, **Vite**, **Tailwind CSS v4**, **Shadcn/UI**, **TanStac
 
 - [Tech Stack](#tech-stack)
 - [Features](#features)
-- [Project Structure](#project-structure)
 - [Running Locally](#running-locally)
 - [Environment Variables](#environment-variables)
 - [State Management](#state-management)
@@ -57,33 +56,7 @@ Built with **React 19**, **Vite**, **Tailwind CSS v4**, **Shadcn/UI**, **TanStac
 - "Sold Out" badge overlaid on the card image when `availableStock = 0`.
 
 ### Admin: Create Drop
-- A **Create Drop** form lives in the navigation bar (collapsible to the sidebar on mobile).
 - Initializes a new merch drop via `POST /api/v1/drops`; all connected clients are notified via the `drop:new` WebSocket event and their drop lists are automatically refreshed.
-
----
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── ui/                    # Shadcn/UI generated components (button, card, badge, input, …)
-│   ├── Countdown.tsx          # Self-decrementing timer with onExpired callback
-│   ├── CreateDropForm.tsx     # Admin form to initialize a new drop
-│   ├── DropCard.tsx           # Per-drop card: reserve → countdown → purchase flow
-│   └── UserPanel.tsx          # User registration / session display
-├── lib/
-│   ├── api.ts                 # Typed Axios API client + TS interfaces (Drop, Reservation, User, Purchase)
-│   ├── error.ts               # showPrettyError — normalises API/network errors into Sonner toasts
-│   ├── socket.ts              # Singleton Socket.io client + useSocket hook + room helpers
-│   ├── store.ts               # Zustand stores: useUserStore, useReservationStore (both persisted)
-│   └── utils.ts               # cn() utility (clsx + tailwind-merge)
-├── pages/
-│   └── DropsPage.tsx          # Fetches drops via TanStack Query; wires up all socket event handlers
-├── App.tsx                    # App shell: QueryClientProvider, sticky header, sidebar layout, Toaster
-├── index.css                  # Tailwind v4 entry, CSS custom properties, design tokens
-└── main.tsx                   # React root
-```
 
 ---
 
