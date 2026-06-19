@@ -141,13 +141,13 @@ export function DropCard({ drop }: DropCardProps) {
         </div>
 
         {/* Recent purchasers activity feed */}
-        {drop.recentPurchasers.length > 0 && (
+        {drop?.recentPurchasers?.length > 0 && (
           <div className="space-y-1.5 rounded-lg bg-muted/50 p-2.5">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
               <Users className="h-3 w-3" />
               Recent buyers
             </div>
-            {drop.recentPurchasers.map((p, i) => (
+            {drop?.recentPurchasers?.map((p, i) => (
               <div key={i} className="flex items-center justify-between text-xs">
                 <span className="font-medium">@{p.username}</span>
                 <span className="text-muted-foreground">

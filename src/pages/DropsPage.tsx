@@ -52,8 +52,13 @@ export function DropsPage() {
   });
 
   // ── New drop broadcast ───────────────────────────────────────────────────────
-  useSocket("drop:new", () => {
-    queryClient.invalidateQueries({ queryKey: ["drops"] });
+  useSocket("drop:new", ({ drop }) => {
+    queryClient.setQueryData<Drop[]>(["drops"], (old) => {
+      if (!old) return [drop];
+      // If the drop already exists (re-broadcast), update it; otherwise prepend it
+      const exists = old.some((d) => d.id === drop.id);
+      return exists ? old.map((d) => (d.id === drop.id ? { ...d, ...drop } : d)) : [drop, ...old];
+    });
     toast.info("A new drop just launched!");
   });
 
